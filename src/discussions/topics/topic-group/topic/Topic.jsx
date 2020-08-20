@@ -24,7 +24,7 @@ function Topic({
       data-topic-id={id}
       to={
         Routes.THREADS.PATH.replace(':courseId', courseId)
-          .replace(':discussionId?', id)
+          .replace(':topicId?', id)
       }
     >
       <div className="topic-name h6">

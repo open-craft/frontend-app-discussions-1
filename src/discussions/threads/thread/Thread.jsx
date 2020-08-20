@@ -18,7 +18,7 @@ function Thread({ thread, intl }) {
       data-thread-id={thread.id}
       to={
         Routes.POSTS.PATH.replace(':courseId', thread.course_id)
-          .replace(':discussionId', thread.topic_id)
+          .replace(':topicId', thread.topic_id)
           .replace(':threadId', thread.id)
       }
     >

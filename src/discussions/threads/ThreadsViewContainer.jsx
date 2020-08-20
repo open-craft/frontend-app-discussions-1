@@ -8,11 +8,11 @@ import { fetchCourseThreads } from './data/thunks';
 import ThreadsView from './ThreadsView';
 
 function ThreadsViewContainer({ match }) {
-  const { courseId, discussionId } = useParams();
+  const { courseId, topicId } = useParams();
   const dispatch = useDispatch();
 
   const filterSelfThreads = (match.path === Routes.THREADS.MY_THREADS);
-  const threads = useSelector(selectCourseThreads(discussionId));
+  const threads = useSelector(selectCourseThreads(topicId));
 
   useEffect(() => {
     // The courseId from the URL is the course we WANT to load.

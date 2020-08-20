@@ -50,15 +50,15 @@ export const Routes = {
     PATH: '/discussions/:courseId?',
   },
   THREADS: {
-    PATH: '/discussions/:courseId/threads/:discussionId?',
+    PATH: '/discussions/:courseId/topics/:topicId?',
     MY_THREADS: '/discussions/:courseId/threads/mine',
     ALL_THREADS: '/discussions/:courseId/threads/all',
   },
   POSTS: {
-    PATH: '/discussions/:courseId/threads/:discussionId/:threadId',
+    PATH: '/discussions/:courseId/topics/:topicId/:threadId',
   },
   TOPICS: {
-    PATH: '/discussions/:courseId/topics/:category?',
-    ALL: '/discussions/:courseId/topics',
+    PATH: '/discussions/:courseId/:category?',
+    ALL: '/discussions/:courseId/',
   },
 };
