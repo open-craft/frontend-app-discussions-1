@@ -3,7 +3,6 @@ import commentShape from '../comment/comment-shape';
 import CommentIcons from '../comment-icons/CommentIcons';
 
 function Reply({ reply }) {
-  console.log(reply);
   return (
     <div className="discussion-comment d-flex flex-column">
       <div className="list-group-item">

@@ -19,17 +19,18 @@ function Topic({
   const { courseId } = useParams();
 
   return (
-    <div className="discussion-topic d-flex flex-column list-group-item p-2" data-topic-id={id}>
-      <Link
-        className="topic-name h6 text-gray-700 text-decoration-none"
-        to={
-          Routes.POSTS.PATH.replace(':courseId', courseId)
-            .replace(':discussionId?', id)
-            .replace(':threadId?', '')
-        }
-      >
+    <Link
+      className="discussion-topic d-flex flex-column list-group-item text-gray-900 text-decoration-none p-2"
+      data-topic-id={id}
+      to={
+        Routes.POSTS.PATH.replace(':courseId', courseId)
+          .replace(':discussionId?', id)
+          .replace(':threadId?', '')
+      }
+    >
+      <div className="topic-name h6">
         { name }
-      </Link>
+      </div>
       <div className="d-flex lead">
         <span className="badge mr-4">
           <FontAwesomeIcon className="mr-2" icon={faQuestionCircle} />
@@ -47,7 +48,7 @@ function Topic({
         ) }
       </div>
 
-    </div>
+    </Link>
   );
 }
 

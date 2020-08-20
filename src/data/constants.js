@@ -46,6 +46,9 @@ export const TopicsFilter = {
 };
 
 export const Routes = {
+  DISCUSSIONS: {
+    PATH: '/discussions/:courseId?',
+  },
   POSTS: {
     PATH: '/discussions/:courseId/posts/:discussionId?',
     MY_POSTS: '/discussions/:courseId/posts/mine',

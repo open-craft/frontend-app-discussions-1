@@ -1,13 +1,14 @@
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import Button from '@edx/paragon/dist/Button';
 import SearchField from '@edx/paragon/dist/SearchField';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { Routes } from '../../data/constants';
 import messages from '../../data/messages';
 
-function NavigationBar({ intl, courseId }) {
+function NavigationBar({ intl }) {
+  const { courseId } = useParams();
   return (
     <div className="navigation-bar d-flex flex-row my-2">
       <ul className="nav flex-fill">
@@ -42,7 +43,6 @@ function NavigationBar({ intl, courseId }) {
 }
 
 NavigationBar.propTypes = {
-  courseId: PropTypes.string.isRequired,
   intl: intlShape.isRequired,
 };
 

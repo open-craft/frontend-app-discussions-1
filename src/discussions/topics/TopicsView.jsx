@@ -28,7 +28,7 @@ function TopicsView({ coursewareTopics, nonCoursewareTopics }) {
         <TopicGroup
           id={topicGroup.id}
           name={topicGroup.name}
-          subtopics={topicGroup.subtopics}
+          subtopics={topicGroup.children}
           key={topicGroup.name}
         />
       ),
