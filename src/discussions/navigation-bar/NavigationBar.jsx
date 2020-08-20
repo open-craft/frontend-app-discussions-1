@@ -35,6 +35,7 @@ function NavigationBar({ intl }) {
             activeClassName="text-white bg-primary-500 border-primary-300"
             className="nav-link rounded-lg"
             to={Routes.TOPICS.ALL.replace(':courseId', courseId)}
+            exact
           >
             { intl.formatMessage(messages.all_topics) }
           </NavLink>
