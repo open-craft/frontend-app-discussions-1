@@ -7,37 +7,57 @@ const commentsSlice = createSlice({
   initialState: {
     status: LoadingStatus.LOADING,
     page: null,
-    comments: {
-      // Map thread ids to comments
+    comment: {
+      // Map thread ids to comment
+    },
+    replies: {
+      // Map thread ids to replies
     },
     totalPages: null,
     totalThreads: null,
   },
   reducers: {
-    fetchCommentsRequest: (state) => {
+    fetchCommentRequest: (state) => {
       state.status = LoadingStatus.LOADING;
     },
-    fetchCommentsSuccess: (state, { payload }) => {
+    fetchCommentSuccess: (state, { payload }) => {
       const { data, topicId } = payload;
       state.status = LoadingStatus.LOADED;
-      state.comments[topicId] = data.results;
+      state.comment[topicId] = data;
+    },
+    fetchCommentFailed: (state) => {
+      state.status = LoadingStatus.FAILED;
+    },
+    fetchCommentDenied: (state) => {
+      state.status = LoadingStatus.DENIED;
+    },
+    fetchRepliesRequest: (state) => {
+      state.status = LoadingStatus.LOADING;
+    },
+    fetchRepliesSuccess: (state, { payload }) => {
+      const { data, topicId } = payload;
+      state.status = LoadingStatus.LOADED;
+      state.replies[topicId] = data.results;
       state.page = data.pagination.page;
       state.totalPages = data.pagination.num_pages;
       state.totalThreads = data.pagination.count;
     },
-    fetchCommentsFailed: (state) => {
+    fetchRepliesFailed: (state) => {
       state.status = LoadingStatus.FAILED;
     },
-    fetchCommentsDenied: (state) => {
+    fetchRepliesDenied: (state) => {
       state.status = LoadingStatus.DENIED;
     },
   },
 });
 
 export const {
-  fetchCommentsRequest,
-  fetchCommentsSuccess,
-  fetchCommentsFailed,
+  fetchCommentRequest,
+  fetchCommentSuccess,
+  fetchCommentFailed,
+  fetchRepliesRequest,
+  fetchRepliesSuccess,
+  fetchRepliesFailed,
 } = commentsSlice.actions;
 
 export const commentsReducer = commentsSlice.reducer;

@@ -32,6 +32,13 @@ export const AllPostsFilter = {
   ALL_QUESTIONS: 'all_questions',
 };
 
+export const PostsStatusFilter = {
+  ALL: 'filter_all',
+  UNREAD: 'filter_unread',
+  FOLLOWING: 'filter_following',
+  FLAGGED: 'filter_flagged',
+};
+
 export const TopicsFilter = {
   ALL: 'all_topics',
   COURSE_SECTION: 'course_section_topics',
@@ -39,13 +46,16 @@ export const TopicsFilter = {
 };
 
 export const Routes = {
-  TOPICS: {
-    PATH: '/discussions/:courseId/topics',
-    ALL: '/discussions/:courseId/topics',
-  },
   POSTS: {
-    PATH: '/discussions/:courseId/posts/:discussionId/:threadId?',
+    PATH: '/discussions/:courseId/posts/:discussionId?',
     MY_POSTS: '/discussions/:courseId/posts/mine',
     ALL_POSTS: '/discussions/:courseId/posts/all',
+  },
+  THREADS: {
+    PATH: '/discussions/:courseId/posts/:discussionId/:threadId',
+  },
+  TOPICS: {
+    PATH: '/discussions/:courseId/topics/:category?',
+    ALL: '/discussions/:courseId/topics',
   },
 };

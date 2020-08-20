@@ -8,7 +8,7 @@ function SelectableDropdown({
   const [selected, setSelected] = useState(options.find(option => (option.value === defaultOption)));
   return (
     <Dropdown>
-      <Dropdown.Toggle>
+      <Dropdown.Toggle className="bg-gray-100 text-gray 700 border-0 my-auto">
         { label || selected.label }
       </Dropdown.Toggle>
       <Dropdown.Menu>

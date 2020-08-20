@@ -2,7 +2,14 @@
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import { API_BASE_URL } from '../../../data/constants';
 
-export async function getThreadComments(
+export async function getThreadComment(threadId) {
+  const url = new URL(`${API_BASE_URL}/api/discussion/v1/threads/${threadId}/`);
+  const { data } = await getAuthenticatedHttpClient()
+    .get(url);
+  return data;
+}
+
+export async function getThreadReplies(
   threadId, {
     commentId, page, pageSize, requestedFields,
   } = {},

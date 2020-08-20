@@ -1,17 +1,38 @@
 import React from 'react';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import { Routes } from '../../../data/constants';
 import Topic, { topicShape } from './topic/Topic';
 
-function TopicGroup({ id, name, topics }) {
+function TopicGroup({ id, name, subtopics }) {
+  const { courseId } = useParams();
+
   return (
     <div className="discussion-topic-group d-flex flex-column" data-topic-id={id}>
       { name && (
-        <div className="topic-name border-bottom pl-2 pt-1 pb-1">
+        <Link
+          className="topic-name list-group-item text-gray-500 text-decoration-none p-2"
+          to={
+            Routes.TOPICS.PATH.replace(':courseId', courseId)
+              .replace(':category?', name)
+          }
+        >
           { name }
-        </div>
+        </Link>
       ) }
       {
-        topics.map(
-          topic => <Topic id={topic.id} name={topic.name} topics={topic.children} key={topic.id} />,
+        subtopics.map(
+          topic => (
+            <Topic
+              id={topic.id}
+              name={topic.name}
+              subtopics={topic.subtopics}
+              questions={topic.questions}
+              discussions={topic.discussions}
+              flags={topic.flags}
+              key={topic.id}
+            />
+          ),
         )
       }
     </div>

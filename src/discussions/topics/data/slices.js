@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { LoadingStatus } from '../../../data/constants';
 
-const topicsSLice = createSlice({
+const topicsSlice = createSlice({
   name: 'courseTopics',
   initialState: {
     status: LoadingStatus.LOADING,
@@ -32,6 +32,6 @@ export const {
   fetchCourseTopicsRequest,
   fetchCourseTopicsSuccess,
   fetchCourseTopicsFailed,
-} = topicsSLice.actions;
+} = topicsSlice.actions;
 
-export const topicsReducer = topicsSLice.reducer;
+export const topicsReducer = topicsSlice.reducer;

@@ -13,7 +13,15 @@ import messages from './messages';
 
 function Post({ post, intl }) {
   return (
-    <div className="discussion-post d-flex border-bottom pl-2 pt-1 pb-1" data-post-id={post.id}>
+    <Link
+      className="discussion-post d-flex list-group-item p-2 text-decoration-none text-gray-900"
+      data-post-id={post.id}
+      to={
+        Routes.THREADS.PATH.replace(':courseId', post.course_id)
+          .replace(':discussionId', post.topic_id)
+          .replace(':threadId', post.id)
+      }
+    >
       <div className="d-flex post-unread-status m-1">
         { post.read || <FontAwesomeIcon icon={faCircle} /> }
       </div>
@@ -22,26 +30,22 @@ function Post({ post, intl }) {
           <div className="d-flex user-avatar m-1">
             [A]
           </div>
-          <div className="d-flex post-type-icon m-1">
-            { post.type === 'question' && <FontAwesomeIcon icon={faQuestionCircle} /> }
-            { post.type === 'discussion' && <FontAwesomeIcon icon={faComments} /> }
-          </div>
           <div className="d-flex m-1 flex-column">
-            <Link
-              className="post-title d-flex post-tile"
-              to={
-                Routes.POSTS.PATH.replace(':discussionId', post.topic_id)
-                  .replace(':courseId', post.course_id)
-                  .replace(':threadId', post.id)
-              }
-            >
-              { post.title }
-            </Link>
-            <div className="d-flex">
-              <div className="post-author">
+            <div className="d-flex flex-row">
+              <div className="d-flex post-type-icon m-1">
+                { post.type === 'question' && <FontAwesomeIcon icon={faQuestionCircle} /> }
+                { post.type === 'discussion' && <FontAwesomeIcon icon={faComments} /> }
+              </div>
+              <div className="post-title d-flex mx-1 font-weight-bold text-gray-700">
+                { post.title }
+              </div>
+            </div>
+            <div className="d-flex small text-gray-300">
+              <div className="post-author mx-1">
                 { post.author }
               </div>
-              <div className="post-datetime">
+              |
+              <div className="post-datetime mx-1">
                 {
                   post.updated_at
                     ? intl.formatMessage(messages.last_response, { time: post.updated_at })
@@ -55,19 +59,19 @@ function Post({ post, intl }) {
             { post.pinned && <FontAwesomeIcon icon={faThumbtack} /> }
           </div>
         </div>
-        <div className="d-flex">
+        <div className="d-flex my-1">
           { post.raw_body }
         </div>
         <div className="d-flex">
           { post.following
             ? <FontAwesomeIcon icon={faSolidStar} />
             : <FontAwesomeIcon icon={faEmptyStar} /> }
-          <span className="badge">
+          <span className="badge mx-1">
             <FontAwesomeIcon icon={faComments} /> { post.comment_count }
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
