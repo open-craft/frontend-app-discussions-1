@@ -1,20 +1,20 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
 
 const messages = defineMessages({
-  all_posts: {
-    id: 'discussions.navigation-bar.filter.all-posts',
-    defaultMessage: 'All posts',
-    description: 'Option in dropdown to filter to all posts',
+  all_threads: {
+    id: 'discussions.navigation-bar.filter.all-threads',
+    defaultMessage: 'All threads',
+    description: 'Option in dropdown to filter to all threads',
   },
   all_topics: {
     id: 'discussions.navigation-bar.filter.all-topics',
     defaultMessage: 'All topics',
     description: 'Option in dropdown to view all topics',
   },
-  my_posts: {
-    id: 'discussions.navigation-bar.filter.my-posts',
-    defaultMessage: 'My posts',
-    description: 'Option in dropdown to filter to all a user\'s posts',
+  my_threads: {
+    id: 'discussions.navigation-bar.filter.my-threads',
+    defaultMessage: 'My threads',
+    description: 'Option in dropdown to filter to all a user\'s threads',
   },
   search_results: {
     id: 'discussions.navigation-bar.filter.search-results',

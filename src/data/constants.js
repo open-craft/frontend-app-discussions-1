@@ -20,19 +20,19 @@ export const ThreadView = {
   UNANSWERED: 'unanswered',
 };
 
-export const MyPostsFilter = {
-  MY_POSTS: 'my_posts',
+export const MyThreadsFilter = {
+  MY_THREADS: 'my_threads',
   MY_DISCUSSIONS: 'my_discussions',
   MY_QUESTIONS: 'my_questions',
 };
 
-export const AllPostsFilter = {
-  ALL_POSTS: 'all_posts',
+export const AllThreadsFilter = {
+  ALL_THREADS: 'all_threads',
   ALL_DISCUSSIONS: 'all_discussions',
   ALL_QUESTIONS: 'all_questions',
 };
 
-export const PostsStatusFilter = {
+export const ThreadsStatusFilter = {
   ALL: 'filter_all',
   UNREAD: 'filter_unread',
   FOLLOWING: 'filter_following',
@@ -49,13 +49,13 @@ export const Routes = {
   DISCUSSIONS: {
     PATH: '/discussions/:courseId?',
   },
-  POSTS: {
-    PATH: '/discussions/:courseId/posts/:discussionId?',
-    MY_POSTS: '/discussions/:courseId/posts/mine',
-    ALL_POSTS: '/discussions/:courseId/posts/all',
-  },
   THREADS: {
-    PATH: '/discussions/:courseId/posts/:discussionId/:threadId',
+    PATH: '/discussions/:courseId/threads/:discussionId?',
+    MY_THREADS: '/discussions/:courseId/threads/mine',
+    ALL_THREADS: '/discussions/:courseId/threads/all',
+  },
+  POSTS: {
+    PATH: '/discussions/:courseId/threads/:discussionId/:threadId',
   },
   TOPICS: {
     PATH: '/discussions/:courseId/topics/:category?',

@@ -23,9 +23,8 @@ function Topic({
       className="discussion-topic d-flex flex-column list-group-item text-gray-900 text-decoration-none p-2"
       data-topic-id={id}
       to={
-        Routes.POSTS.PATH.replace(':courseId', courseId)
+        Routes.THREADS.PATH.replace(':courseId', courseId)
           .replace(':discussionId?', id)
-          .replace(':threadId?', '')
       }
     >
       <div className="topic-name h6">

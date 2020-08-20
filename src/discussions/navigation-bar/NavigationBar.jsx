@@ -13,17 +13,29 @@ function NavigationBar({ intl }) {
     <div className="navigation-bar d-flex flex-row my-2">
       <ul className="nav flex-fill">
         <li className="nav-item">
-          <NavLink activeClassName="text-white bg-primary-500 border-primary-300" className="nav-link rounded-lg" to={Routes.POSTS.MY_POSTS.replace(':courseId', courseId)}>
-            { intl.formatMessage(messages.my_posts) }
+          <NavLink
+            activeClassName="text-white bg-primary-500 border-primary-300"
+            className="nav-link rounded-lg"
+            to={Routes.THREADS.MY_THREADS.replace(':courseId', courseId)}
+          >
+            { intl.formatMessage(messages.my_threads) }
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink activeClassName="text-white bg-primary-500 border-primary-300" className="nav-link rounded-lg" to={Routes.POSTS.ALL_POSTS.replace(':courseId', courseId)}>
-            { intl.formatMessage(messages.all_posts) }
+          <NavLink
+            activeClassName="text-white bg-primary-500 border-primary-300"
+            className="nav-link rounded-lg"
+            to={Routes.THREADS.ALL_THREADS.replace(':courseId', courseId)}
+          >
+            { intl.formatMessage(messages.all_threads) }
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink activeClassName="text-white bg-primary-500 border-primary-300" className="nav-link rounded-lg" to={Routes.TOPICS.ALL.replace(':courseId', courseId)}>
+          <NavLink
+            activeClassName="text-white bg-primary-500 border-primary-300"
+            className="nav-link rounded-lg"
+            to={Routes.TOPICS.ALL.replace(':courseId', courseId)}
+          >
             { intl.formatMessage(messages.all_topics) }
           </NavLink>
         </li>

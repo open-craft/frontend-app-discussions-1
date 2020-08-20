@@ -2,54 +2,85 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { LoadingStatus } from '../../../data/constants';
 
-function normaliseThreads(rawThreadsData) {
-  const topicThreadMap = {};
-  rawThreadsData.forEach(
-    thread => {
-      if (!topicThreadMap[thread.topic_id]) {
-        topicThreadMap[thread.topic_id] = [];
-      }
-      topicThreadMap[thread.topic_id].push(thread);
-    },
-  );
-  return topicThreadMap;
-}
-
-const courseThreadsSlice = createSlice({
-  name: 'courseThreads',
+const postsSlice = createSlice({
+  name: 'threads',
   initialState: {
     status: LoadingStatus.LOADING,
     page: null,
-    threads: {
-      // Mapping of topic ids to threads in them
+    post: {
+      // Map thread ids to post
+    },
+    comments: {
+      // Map thread ids to comments
+    },
+    replies: {
+      // Map comment ids to replies
     },
     totalPages: null,
     totalThreads: null,
   },
   reducers: {
-    fetchCourseThreadsRequest: (state) => {
+    fetchCommentsRequest: (state) => {
       state.status = LoadingStatus.LOADING;
     },
-    fetchCourseThreadsSuccess: (state, { payload }) => {
+    fetchCommentsSuccess: (state, { payload }) => {
+      const { data, threadId } = payload;
       state.status = LoadingStatus.LOADED;
-      state.threads = normaliseThreads(payload.results);
-      state.page = payload.pagination.page;
-      state.totalPages = payload.pagination.num_pages;
-      state.totalThreads = payload.pagination.count;
+      state.comments[threadId] = data.results;
+      state.page = data.pagination.page;
+      state.totalPages = data.pagination.num_pages;
+      state.totalThreads = data.pagination.count;
     },
-    fetchCourseThreadsFailed: (state) => {
+    fetchCommentsFailed: (state) => {
       state.status = LoadingStatus.FAILED;
     },
-    fetchCourseThreadsDenied: (state) => {
+    fetchCommentsDenied: (state) => {
+      state.status = LoadingStatus.DENIED;
+    },
+    fetchPostRequest: (state) => {
+      state.status = LoadingStatus.LOADING;
+    },
+    fetchPostSuccess: (state, { payload }) => {
+      const { data, threadId } = payload;
+      state.status = LoadingStatus.LOADED;
+      state.post[threadId] = data;
+    },
+    fetchPostFailed: (state) => {
+      state.status = LoadingStatus.FAILED;
+    },
+    fetchPostDenied: (state) => {
+      state.status = LoadingStatus.DENIED;
+    },
+    fetchRepliesRequest: (state) => {
+      state.status = LoadingStatus.LOADING;
+    },
+    fetchRepliesSuccess: (state, { payload }) => {
+      const { data, commentId } = payload;
+      state.status = LoadingStatus.LOADED;
+      state.replies[commentId] = data.results;
+      state.page = data.pagination.page;
+      state.totalPages = data.pagination.num_pages;
+      state.totalThreads = data.pagination.count;
+    },
+    fetchRepliesFailed: (state) => {
+      state.status = LoadingStatus.FAILED;
+    },
+    fetchRepliesDenied: (state) => {
       state.status = LoadingStatus.DENIED;
     },
   },
 });
 
 export const {
-  fetchCourseThreadsRequest,
-  fetchCourseThreadsSuccess,
-  fetchCourseThreadsFailed,
-} = courseThreadsSlice.actions;
+  fetchCommentsRequest,
+  fetchCommentsSuccess,
+  fetchCommentsFailed,
+  fetchPostRequest,
+  fetchPostSuccess,
+  fetchPostFailed,
+  fetchRepliesRequest,
+  fetchRepliesSuccess,
+  fetchRepliesFailed,
+} = postsSlice.actions;
 
-export const courseThreadsReducer = courseThreadsSlice.reducer;
+export const postsReducer = postsSlice.reducer;

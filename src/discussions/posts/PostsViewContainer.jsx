@@ -1,26 +1,23 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { Routes } from '../../data/constants';
-import { selectCourseThreads } from './data/selectors';
-import { fetchCourseThreads } from './data/thunks';
 import PostsView from './PostsView';
+import { selectThreadPost, selectThreadComments } from './data/selectors';
+import { fetchPost, fetchThreadComments } from './data/thunks';
 
-function PostsViewContainer({ match }) {
-  const { courseId, discussionId } = useParams();
+function PostsViewContainer() {
+  const { threadId } = useParams();
   const dispatch = useDispatch();
-
-  const filterSelfPosts = (match.path === Routes.POSTS.MY_POSTS);
-  const posts = useSelector(selectCourseThreads(discussionId));
-
+  const post = useSelector(selectThreadPost(threadId));
+  const comments = useSelector(selectThreadComments(threadId));
   useEffect(() => {
     // The courseId from the URL is the course we WANT to load.
-    dispatch(fetchCourseThreads(courseId));
-  }, [courseId]);
+    dispatch(fetchPost(threadId));
+    dispatch(fetchThreadComments(threadId));
+  }, [threadId]);
 
   return (
-    <PostsView posts={posts} filterSelfPosts={filterSelfPosts} />
+    <PostsView post={post} comments={comments} />
   );
 }
 

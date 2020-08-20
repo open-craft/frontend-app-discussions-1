@@ -2,7 +2,7 @@ import { defineMessages } from '@edx/frontend-platform/i18n';
 import globalMessages from '../../../data/messages';
 
 const messages = defineMessages({
-  all_posts: globalMessages.all_posts,
+  all_threads: globalMessages.all_threads,
   all_discussions: {
     id: 'discussions.navigation-bar.filter.all-discussions',
     defaultMessage: 'All discussions',
@@ -33,7 +33,7 @@ const messages = defineMessages({
     id: 'discussions.navigation-bar.filter.flagged',
     defaultMessage: 'Flagged',
   },
-  my_posts: globalMessages.my_posts,
+  my_threads: globalMessages.my_threads,
   my_discussions: {
     id: 'discussions.navigation-bar.filter.my-discussions',
     defaultMessage: 'My discussions',
