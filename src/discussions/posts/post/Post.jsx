@@ -9,6 +9,7 @@ import {
   Avatar, Icon, IconButton, OverlayTrigger, Tooltip,
 } from '@edx/paragon';
 import {
+  MoreVert,
   Pin,
   QuestionAnswer,
   StarFilled,
@@ -57,6 +58,7 @@ PostTypeIcon.propTypes = {
 function PostHeader({
   intl,
   post,
+  preview,
 }) {
   return (
     <div className="d-flex flex-fill justify-content-between">
@@ -82,10 +84,12 @@ function PostHeader({
         </div>
       </div>
       <div className="d-flex mr-3">
-        <Icon src={QuestionAnswer} />
-        <span style={{ minWidth: '2rem' }}>
-          {post.commentCount}
-        </span>
+        {<Icon src={preview ? QuestionAnswer : MoreVert} />}
+        {preview &&
+          <span style={{ minWidth: '2rem' }}>
+            {post.commentCount}
+          </span>
+        }
       </div>
     </div>
   );
@@ -94,17 +98,19 @@ function PostHeader({
 PostHeader.propTypes = {
   intl: intlShape.isRequired,
   post: postShape.isRequired,
+  preview: PropTypes.bool.isRequired,
 };
 
 function Post({
   post,
   intl,
+  preview,
 }) {
   const dispatch = useDispatch();
 
   return (
     <div className="d-flex flex-column p-2.5 w-100">
-      <PostHeader post={post} intl={intl} />
+      <PostHeader post={post} intl={intl} preview={preview} />
       <div className="d-flex mt-2 mb-0 p-0" dangerouslySetInnerHTML={{ __html: post.renderedBody }} />
       <div className="d-flex align-items-center">
         <LikeButton
@@ -139,6 +145,11 @@ function Post({
 Post.propTypes = {
   intl: intlShape.isRequired,
   post: postShape.isRequired,
+  preview: PropTypes.bool,
 };
+
+Post.defaultProps = {
+  preview: true,
+}
 
 export default injectIntl(Post);
