@@ -9,7 +9,7 @@ import { Button, Spinner } from '@edx/paragon';
 
 import { selectThread } from '../posts/data/selectors';
 import { markThreadAsRead } from '../posts/data/thunks';
-import Post from '../posts/post/Post';
+import Comment from './comment/Comment';
 import { selectThreadComments } from './data/selectors';
 import { fetchThreadComments } from './data/thunks';
 import Reply from './reply/Reply';
@@ -42,7 +42,7 @@ function CommentsView({ intl }) {
     <div className="discussion-comments d-flex flex-column w-100 ml-3">
       <div className="mb-2">
         <div className="list-group list-group-flush">
-          <Post post={thread} preview={false} />
+          <Comment comment={thread} intl={intl} />
           <div className="list-group">
             {comments.map(reply => (
               <div key={reply.id} className="list-group-item list-group-item-action">

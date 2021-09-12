@@ -20,7 +20,7 @@ function CommentIcons(
   },
 ) {
   return (
-    <div className="d-flex flex-column icons">
+    <div className="d-flex align-items-center icons">
       <LikeButton
         count={count}
         onClick={() => onLike && onLike()}

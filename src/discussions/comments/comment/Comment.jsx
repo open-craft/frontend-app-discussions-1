@@ -5,6 +5,10 @@ import * as timeago from 'timeago.js';
 
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 
+import { Icon } from '@edx/paragon';
+import { MoreVert } from '@edx/paragon/icons';
+
+
 import CommentIcons from '../comment-icons/CommentIcons';
 import messages from '../messages';
 
@@ -27,7 +31,10 @@ function Comment({
             <span className="font-weight-bold text-info-300 ml-1">{comment.author}</span>
           </div>
         </div>
-        <CommentIcons abuseFlagged={comment.abuseFlagged} following={comment.following} />
+
+        <div className="d-flex mr-3">
+          <Icon src={MoreVert} />
+        </div>
       </div>
       <div className="mt-2">
         <div className="d-flex" dangerouslySetInnerHTML={{ __html: comment.renderedBody }} />
@@ -35,6 +42,7 @@ function Comment({
           {intl.formatMessage(messages.postVisibility, { group: comment.groupName })}
         </div>
       </div>
+      <CommentIcons abuseFlagged={comment.abuseFlagged} following={comment.following} count={comment.voteCount} />
     </div>
   );
 }
