@@ -8,7 +8,6 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Icon } from '@edx/paragon';
 import { MoreVert } from '@edx/paragon/icons';
 
-
 import CommentIcons from '../comment-icons/CommentIcons';
 import messages from '../messages';
 
