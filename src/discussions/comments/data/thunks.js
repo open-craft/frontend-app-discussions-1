@@ -4,7 +4,12 @@ import { logError } from '@edx/frontend-platform/logging';
 
 import { getHttpErrorStatus } from '../../utils';
 import {
-  deleteComment, getCommentResponses, getThreadComments, postComment, updateComment,
+  deleteComment,
+  getCommentResponses,
+  getCourseSettings,
+  getThreadComments,
+  postComment,
+  updateComment,
 } from './api';
 import {
   deleteCommentDenied,
@@ -19,6 +24,9 @@ import {
   fetchCommentsFailed,
   fetchCommentsRequest,
   fetchCommentsSuccess,
+  fetchCourseSettingsFailed,
+  fetchCourseSettingsRequest,
+  fetchCourseSettingsSuccess,
   postCommentDenied,
   postCommentFailed,
   postCommentRequest,
@@ -116,6 +124,19 @@ export function removeComment(commentId, threadId) {
       } else {
         dispatch(deleteCommentFailed());
       }
+      logError(error);
+    }
+  };
+}
+
+export function fetchCourseSettings(courseId, threadId) {
+  return async (dispatch) => {
+    try {
+      dispatch(fetchCourseSettingsRequest({ threadId }));
+      const data = await getCourseSettings(courseId);
+      dispatch(fetchCourseSettingsSuccess(camelCaseObject(data)));
+    } catch (error) {
+      dispatch(fetchCourseSettingsFailed());
       logError(error);
     }
   };

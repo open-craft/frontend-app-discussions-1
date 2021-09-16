@@ -96,6 +96,7 @@ PostHeader.propTypes = {
 function Post({
   post,
   intl,
+  visibility,
 }) {
   const dispatch = useDispatch();
 
@@ -103,6 +104,7 @@ function Post({
     <div className="d-flex flex-column p-2.5 w-100">
       <PostHeader post={post} intl={intl} />
       <div className="mt-2 mb-0 p-0" dangerouslySetInnerHTML={{ __html: post.renderedBody }} />
+      {visibility && <div className="d-flex align-items-center text-gray-400 x-small">{`This post is visible to ${post.groupName || 'everyone'}`}</div>}
       <div className="d-flex align-items-center">
         <LikeButton
           count={post.voteCount}
@@ -137,6 +139,11 @@ function Post({
 Post.propTypes = {
   intl: intlShape.isRequired,
   post: postShape.isRequired,
+  visibility: PropTypes.bool,
+};
+
+Post.defaultProps = {
+  visibility: false,
 };
 
 export default injectIntl(Post);

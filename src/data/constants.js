@@ -91,6 +91,7 @@ const BASE_PATH = '/discussions/:courseId';
 export const Routes = {
   DISCUSSIONS: {
     PATH: `${BASE_PATH}?`,
+    SETTINGS: `${BASE_PATH}/settings`,
   },
   POSTS: {
     PATH: `${BASE_PATH}/topics/:topicId`,
