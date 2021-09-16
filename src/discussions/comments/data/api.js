@@ -2,8 +2,6 @@
 import { ensureConfig, getConfig, snakeCaseObject } from '@edx/frontend-platform';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
-import { Routes } from '../../../data/constants';
-
 ensureConfig([
   'LMS_BASE_URL',
 ], 'Comments API service');
@@ -104,7 +102,7 @@ export async function deleteComment(commentId) {
  * @returns {Promise<{}>}
  */
 export async function getCourseSettings(courseId) {
-  const url = Routes.DISCUSSIONS.SETTINGS.replace(':courseId', courseId);
+  const url = `${apiBaseUrl}/api/discussion/v1/courses/${courseId}/settings`;
   const { data } = await getAuthenticatedHttpClient().get(url);
   return data;
 }

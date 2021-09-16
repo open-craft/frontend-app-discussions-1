@@ -10,7 +10,7 @@ import { Button, Spinner } from '@edx/paragon';
 import { selectThread } from '../posts/data/selectors';
 import { markThreadAsRead } from '../posts/data/thunks';
 import Post from '../posts/post/Post';
-import { courseSettingsSchemeDevided, selectThreadComments } from './data/selectors';
+import { courseSettingsSchemeDivided, selectThreadComments } from './data/selectors';
 import { fetchCourseSettings, fetchThreadComments } from './data/thunks';
 import Reply from './reply/Reply';
 import messages from './messages';
@@ -18,11 +18,11 @@ import messages from './messages';
 ensureConfig(['POST_MARK_AS_READ_DELAY'], 'Comment thread view');
 
 function CommentsView({ intl }) {
-  const { postId } = useParams();
+  const { courseId, postId } = useParams();
   const dispatch = useDispatch();
   const thread = useSelector(selectThread(postId));
   const comments = useSelector(selectThreadComments(postId));
-  // const courseSchemeDevided = useSelector(courseSettingsSchemeDevided(postId))
+  const courseSchemeDevided = useSelector(courseSettingsSchemeDivided);
   useEffect(() => {
     dispatch(fetchThreadComments(postId));
     const markReadTimer = setTimeout(() => {
@@ -30,7 +30,7 @@ function CommentsView({ intl }) {
         dispatch(markThreadAsRead(postId));
       }
     }, getConfig().POST_MARK_AS_READ_DELAY);
-    // dispatch(fetchCourseSettings(thread.courseId));
+    dispatch(fetchCourseSettings(courseId));
     return () => {
       clearTimeout(markReadTimer);
     };
@@ -44,7 +44,7 @@ function CommentsView({ intl }) {
     <div className="discussion-comments d-flex flex-column w-100 ml-3">
       <div className="mb-2">
         <div className="list-group list-group-flush">
-          <Post post={thread} visibility />
+          <Post post={thread} visibility={courseSchemeDevided} />
           <div className="list-group">
             {comments.map(reply => (
               <div key={reply.id} className="list-group-item list-group-item-action">

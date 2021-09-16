@@ -129,10 +129,10 @@ export function removeComment(commentId, threadId) {
   };
 }
 
-export function fetchCourseSettings(courseId, threadId) {
+export function fetchCourseSettings(courseId) {
   return async (dispatch) => {
     try {
-      dispatch(fetchCourseSettingsRequest({ threadId }));
+      dispatch(fetchCourseSettingsRequest({ courseId }));
       const data = await getCourseSettings(courseId);
       dispatch(fetchCourseSettingsSuccess(camelCaseObject(data)));
     } catch (error) {
