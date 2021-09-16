@@ -52,6 +52,8 @@ const commentsSlice = createSlice({
     totalPages: null,
     totalThreads: null,
     postStatus: RequestStatus.SUCCESSFUL,
+    courseState: RequestStatus.SUCCESSFUL,
+    courseSettings: null,
   },
   reducers: {
     fetchCommentsRequest: (state) => {
@@ -129,6 +131,16 @@ const commentsSlice = createSlice({
       state.threadCommentMap[threadId] = state.threadCommentMap[threadId].filter(item => item !== commentId);
       delete state.comments[commentId];
     },
+    fetchCourseSettingsRequest: (state) => {
+      state.courseState = RequestStatus.IN_PROGRESS;
+    },
+    fetchCourseSettingsSuccess: (state, { payload }) => {
+      state.courseState = RequestStatus.SUCCESSFUL;
+      state.courseSettings = payload;
+    },
+    fetchCourseSettingsFailed: (state) => {
+      state.courseState = RequestStatus.FAILED;
+    },
   },
 });
 
@@ -141,6 +153,9 @@ export const {
   fetchCommentsFailed,
   fetchCommentsRequest,
   fetchCommentsSuccess,
+  fetchCourseSettingsFailed,
+  fetchCourseSettingsRequest,
+  fetchCourseSettingsSuccess,
   postCommentDenied,
   postCommentFailed,
   postCommentRequest,

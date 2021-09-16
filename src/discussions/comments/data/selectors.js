@@ -8,3 +8,5 @@ export const selectCommentResponses = commentId => state => (state.comments.comm
 );
 
 export const commentsStatus = state => state.comments.status;
+
+export const courseSettingsSchemeDivided = state => state.courseSettings?.divisionScheme !== 'none';

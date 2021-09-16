@@ -95,3 +95,14 @@ export async function deleteComment(commentId) {
   await getAuthenticatedHttpClient()
     .delete(url);
 }
+
+/**
+ * Fetches a single post.
+ * @param {string} courseId
+ * @returns {Promise<{}>}
+ */
+export async function getCourseSettings(courseId) {
+  const url = `${apiBaseUrl}/api/discussion/v1/courses/${courseId}/settings`;
+  const { data } = await getAuthenticatedHttpClient().get(url);
+  return data;
+}
