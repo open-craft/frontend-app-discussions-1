@@ -12,6 +12,7 @@ import { BreadcrumbMenu, NavigationBar } from '../navigation';
 import { PostEditor, PostsView } from '../posts';
 import { clearRedirect } from '../posts/data';
 import { TopicsView } from '../topics';
+import { fetchCourseSettings } from './comments/data';
 
 export default function DiscussionsHome() {
   const dispatch = useDispatch();
