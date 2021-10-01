@@ -28,6 +28,7 @@ export default function DiscussionsHome() {
         courseId: params.courseId,
         postId: redirectToThread.threadId,
       }));
+      dispatch(fetchCourseSettings(params.courseId));
     }
   }, [redirectToThread]);
 
