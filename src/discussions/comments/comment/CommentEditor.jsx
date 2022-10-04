@@ -49,7 +49,12 @@ function CommentEditor({
     editReasonCode: comment?.lastEdit?.reasonCode || '',
   };
 
-  const saveUpdatedComment = async (values) => {
+  const handleCloseEditor = (resetForm) => {
+    resetForm({ values: initialValues });
+    onCloseEditor();
+  };
+
+  const saveUpdatedComment = async (values, { resetForm }) => {
     if (comment.id) {
       const payload = {
         ...values,
@@ -63,7 +68,7 @@ function CommentEditor({
     if (editorRef.current) {
       editorRef.current.plugins.autosave.removeDraft();
     }
-    onCloseEditor();
+    handleCloseEditor(resetForm);
   };
   // The editorId is used to autosave contents to localstorage. This format means that the autosave is scoped to
   // the current comment id, or the current comment parent or the curren thread.
@@ -82,6 +87,7 @@ function CommentEditor({
         handleSubmit,
         handleBlur,
         handleChange,
+        resetForm,
       }) => (
         <Form onSubmit={handleSubmit}>
           {canDisplayEditReason && (
@@ -137,7 +143,7 @@ function CommentEditor({
           <div className="d-flex py-2 justify-content-end">
             <Button
               variant="outline-primary"
-              onClick={onCloseEditor}
+              onClick={() => handleCloseEditor(resetForm)}
             >
               {intl.formatMessage(messages.cancel)}
             </Button>
