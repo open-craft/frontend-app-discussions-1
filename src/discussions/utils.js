@@ -218,7 +218,6 @@ export const discussionsPath = (path, params) => {
 export function postMessageToParent(type, payload = {}) {
   if (window.parent !== window) {
     const messageTargets = [
-      getConfig().LEARNING_BASE_URL,
       getConfig().LMS_BASE_URL,
     ];
     messageTargets.forEach(target => {
