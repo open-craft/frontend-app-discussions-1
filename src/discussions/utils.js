@@ -222,6 +222,9 @@ export function postMessageToParent(type, payload = {}) {
       getConfig().LMS_BASE_URL,
     ];
     messageTargets.forEach(target => {
+      if (!target) {
+        return ;
+      }
       window.parent.postMessage(
         {
           type,
